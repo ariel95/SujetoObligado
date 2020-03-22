@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Sujeto Obligado";
+}
+
+    <div class="container">
+        <div class="title-app">
+            <p>
+                Sujeto Obligado
+            </p>
+        </div>
+        <div class="input-group mb-3 mt-3 search-container">
+            <input type="text" class="form-control" placeholder="Ingrese un cuit" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <span class="input-group-text octicon-search" id="lupa-search">
+                    <img src="~/Content/Image/lupa.png" class="lupa" />
+                </span>
+            </div>
+        </div>
+        <div id="home-carrousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#home-carrousel" data-slide-to="0" class="active"></li>
+                <li data-target="#home-carrousel" data-slide-to="1"></li>
+                <li data-target="#home-carrousel" data-slide-to="2"></li>
+                <li data-target="#home-carrousel" data-slide-to="3"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <label>Consulte a partir de un CUIT, si está registrado como Sujeto Obligado ante la UIF</label>
+                </div>
+                <div class="carousel-item">
+                    <label>Realice consultas masivas de Sujetos Obligados</label>
+                </div>
+                <div class="carousel-item">
+                    <label>Utilice la API que le brindamos para realizar consultas individuales y consultas másivas</label>
+                </div>
+                <div class="carousel-item">
+                    <label>Suscríbase a determinados cuits para saber si cambia el estado de Sujeto Obligado</label>
+                </div>
+            </div>
+            @*<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>*@
+        </div>
+    </div>

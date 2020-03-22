@@ -1,0 +1,108 @@
+﻿:root {
+    --app-color: #2d3494;
+    --app-color-claro: #b5b5b5;
+    --title-size: 40px;
+}
+
+body {
+    padding-bottom: 20px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+
+/*Overloads*/
+
+
+/*Site*/
+    textarea:focus, input:focus {
+        outline: none !important;
+        border-color: #ced4da !important;
+        box-shadow: none !important;
+    }
+
+.header.texto-link a.navbar-brand {
+    color: white !important;
+    width: 150px;
+    text-align: initial
+}
+.header.texto-link a {
+    color: white !important;
+    width: 80px;
+    text-align: center;
+}
+.header.texto-link a:hover {
+    font-weight: 500;
+}
+.header {
+    background-color: var(--app-color) !important;
+}
+
+.search-container {
+    padding-left: 25%;
+    padding-right: 25%;
+}
+
+.search-container input {
+    border-right:none;
+}
+    
+.search-container span {
+    background-color: white;
+    cursor:pointer;
+}
+.search-container img {
+    height:15px;
+}
+
+footer {
+    /*position: absolute;
+    bottom: 15px;*/
+    text-align: center;
+    width: 100%;
+}
+
+.title-app {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    color: var(--app-color);
+}
+.title-app > p {
+    font-size: var(--title-size);
+    font-weight: 500;
+}
+
+#home-carrousel {
+    text-align: center;
+    /* background-color: #ffffff; */
+    margin-top:75px;
+    margin-right: 25%;
+    margin-left: 25%;
+    height: 150px;
+    border-left: 4px solid var(--app-color);
+    border-right: 4px solid var(--app-color);
+    padding:25px;
+}
+
+.carousel-indicators li {
+    background-color:var(--app-color-claro);    
+}
+.carousel-indicators li.active {
+    background-color: var(--app-color);
+}
+
+address img {
+    height:25px;
+}
