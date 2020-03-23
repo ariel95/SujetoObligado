@@ -87,13 +87,13 @@ footer {
 #home-carrousel {
     text-align: center;
     /* background-color: #ffffff; */
-    margin-top:75px;
-    margin-right: 25%;
-    margin-left: 25%;
+    margin-top: 75px;
+    margin-right: 20%;
+    margin-left: 20%;
     height: 150px;
     border-left: 4px solid var(--app-color);
     border-right: 4px solid var(--app-color);
-    padding:25px;
+    padding: 25px;
 }
 
 .carousel-indicators li {
