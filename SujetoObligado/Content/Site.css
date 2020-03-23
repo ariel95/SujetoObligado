@@ -2,6 +2,7 @@
     --app-color: #2d3494;
     --app-color-claro: #b5b5b5;
     --title-size: 40px;
+    --title-resultado-size: 30px;
 }
 
 body {
@@ -105,4 +106,15 @@ footer {
 
 address img {
     height:25px;
+}
+
+.title-resultado {
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    color: var(--app-color);
+}
+.title-resultado > p {
+    font-size: var(--title-resultado-size);
+    font-weight: 500;
 }

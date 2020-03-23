@@ -1,0 +1,64 @@
+﻿@model SujetoObligado.Models.SujetoObligado.PersonaSO
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="title-resultado">
+    <p>Resultado para el cuit: @Html.DisplayFor(model => model.Cuit)</p>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            Tipo
+        </th>
+        <th>
+            Estado
+        </th>
+        <th>
+            Mensaje
+        </th>
+        <th>
+            Fecha de creación
+        </th>
+        <th></th>
+    </tr>
+
+    @if (Model.Detalle.Count > 0)
+    {
+        int i = 0;
+        foreach (var item in Model.Detalle)
+        {
+            
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tipo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Mensaje)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaCreacion)
+                </td>
+                <td>
+                    <a href="https://sro.uif.gob.ar/SROAPP/#/consultaRegistracion/Detalle/@Model.Cuit@i">Ver comprobante</a>
+                </td>
+            </tr>
+            i++;
+        }
+    }
+    else {
+        <tr>
+            <td colspan="5" class="text-center">
+                El cuit consultado no registra sujeto obligado ante la UIF
+            </td>
+        </tr>
+    }
+
+
+</table>

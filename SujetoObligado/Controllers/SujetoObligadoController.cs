@@ -7,19 +7,20 @@ using System.Linq;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using SujetoObligado.Models.Cuit;
 
 namespace SujetoObligado.Controllers
 {
     public class SujetoObligadoController : Controller
     {
-        private string baseUrl = "https://sro.uif.gob.ar/SROAPI/";// + "30500003193";
+        private string baseUrl = "https://sro.uif.gob.ar/SROAPI/";
 
         // GET: SujetoObligado
-        public async System.Threading.Tasks.Task<ActionResult> Index(string cuit = "30500003193")
+        public async System.Threading.Tasks.Task<ActionResult> Resultado(string cuit)
         {
             List<SujetoObligadoUIF> sujetoObligado = null;
-            PersonaSO persona = null;
-
+            PersonaSO persona;
+            Cuit.Limpiar(ref cuit);
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(baseUrl);
@@ -35,11 +36,15 @@ namespace SujetoObligado.Controllers
                 }
             }
 
-            if (sujetoObligado != null && sujetoObligado.Count > 0) {
+            if (sujetoObligado != null && sujetoObligado.Count > 0)
                 persona = new PersonaSO(sujetoObligado);
-            }
 
-            return View(sujetoObligado);
+            else
+                persona = new PersonaSO();
+
+            persona.Cuit = cuit;
+
+            return View(persona);
         }
 
         // GET: SujetoObligado/Details/5
