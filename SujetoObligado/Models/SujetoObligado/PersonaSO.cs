@@ -16,12 +16,14 @@ namespace SujetoObligado.Models.SujetoObligado
         private int id;
         private string cuit;
         private string razonSocial;
-        private string fechaAlta;
+        private DateTime fechaAlta;
+        private DateTime fechaModificacion;
         private List<DetallePersonaSO> detalle; 
         public int Id { get => id; set => id = value; }
         public string Cuit { get => cuit; set => cuit = value; }
         public string RazonSocial { get => razonSocial; set => razonSocial = value; }
-        public string FechaAlta { get => fechaAlta; set => fechaAlta = value; }
+        public DateTime FechaAlta { get => fechaAlta; set => fechaAlta = value; }
+        public DateTime FechaModificacion { get => fechaModificacion; set => fechaModificacion = value; }
         public List<DetallePersonaSO> Detalle { get => detalle; set => detalle = value; }
 
         public PersonaSO() {

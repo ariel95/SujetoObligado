@@ -39,6 +39,7 @@ namespace SujetoObligado.Models.SujetoObligado
                         {
                             personaAux = new PersonaSO();
                             personaAux.Cuit = cuit;
+                            personaAux.FechaModificacion = Convert.ToDateTime(dt.Rows[i]["FechaModificacion"]);
                             lista.Add(personaAux);
                         }
 
@@ -46,32 +47,14 @@ namespace SujetoObligado.Models.SujetoObligado
                         detalleAux.Tipo = Convert.ToString(dt.Rows[i]["Tipo"]);
                         detalleAux.Mensaje = Convert.ToString(dt.Rows[i]["Mensaje"]);
                         detalleAux.Estado = Convert.ToBoolean(dt.Rows[i]["Estado"]);
+                        
 
                         personaAux.Detalle.Add(detalleAux);
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
                         //TODO: EXCEPCION DE DETALLE NULL POR NO SER SUJETO OBLIGADO
                     }
-                    
-
-
-
-                    //var cuit = Convert.ToString(dt.Rows[i]["Cuit"]);
-
-                    //if (ultimoCuit != cuit) {
-                    //    if (ultimoCuit != "") lista.Add(personaAux);
-                    //    personaAux = new PersonaSO();
-                    //    personaAux.Cuit = cuit;
-                    //}
-                    //DetallePersonaSO detalleAux = new DetallePersonaSO();
-                    //detalleAux.Tipo = Convert.ToString(dt.Rows[i]["Tipo"]);
-                    //detalleAux.Mensaje = Convert.ToString(dt.Rows[i]["Mensaje"]);
-                    //detalleAux.Estado = Convert.ToBoolean(dt.Rows[i]["Estado"]);
-
-                    //personaAux.Detalle.Add(detalleAux);
-                    //ultimoCuit = cuit;
-                    //TODO: Mejorarlo!!! (No funciona con un solo registro)
                 }
 
                 return lista;

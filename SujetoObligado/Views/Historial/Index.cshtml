@@ -5,42 +5,65 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="title-resultado">
+    <p>Historial</p>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Cuit)
+            Cuit
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RazonSocial)
+            Tipo
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FechaAlta)
+            Estado
         </th>
-        <th></th>
+        <th>
+            Mensaje
+        </th>
     </tr>
+    @{ int rows = 0; }
+    @foreach (var persona in Model)
+    {
+        rows = persona.Detalle.Count;
+        if (rows > 0)
+        {
+            <tr>
+                <td rowspan="@(rows + 1)">
+                    @Html.DisplayFor(modelItem => persona.Cuit)
+                </td>
+            </tr>
+            foreach (var detalle in persona.Detalle)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => detalle.Tipo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => detalle.Estado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => detalle.Mensaje)
+                    </td>
+                </tr>
+            }
+        }
+        else { 
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => persona.Cuit)
+                </td>
+                <td colspan="3">
+                    El CUIT no registra sujeto obligado ante la UIF en el día @persona.FechaModificacion
+                </td>
+            </tr>
+        }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cuit)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RazonSocial)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FechaAlta)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+
+
+
+    }
 
 </table>

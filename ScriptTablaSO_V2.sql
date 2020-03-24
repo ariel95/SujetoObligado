@@ -55,7 +55,8 @@ CREATE TABLE Persona (
 		REFERENCES Usuario,
     Cuit varchar(11) NOT NULL,
     RazonSocial varchar(100) null default '',
-	FechaAlta datetime default getdate()
+	FechaAlta datetime default getdate(),
+	FechaModificacion datetime default getdate()
 );
 
 CREATE TABLE DetallePersona (
@@ -97,18 +98,20 @@ BEGIN
 			([IdUsuario]
 			,[Cuit]
 			,[RazonSocial]
-			,[FechaAlta])
+			,[FechaAlta]
+			,[FechaModificacion])
 		OUTPUT Inserted.Id
 		VALUES
 			(@IdUsuario
 			,@Cuit
 			,@RazonSocial
+			,GETDATE()
 			,GETDATE())
 	END
 	ELSE
 	BEGIN
 		UPDATE Persona
-		SET RazonSocial = @RazonSocial
+		SET RazonSocial = @RazonSocial, FechaModificacion = GETDATE()
 		OUTPUT inserted.Id
 		WHERE IdUsuario = @IdUsuario and Cuit = @Cuit
 	END
@@ -178,7 +181,7 @@ AS
 BEGIN
 	SET NOCOUNT ON;
 
-	SELECT P.Cuit, SO.Tipo, SO.Mensaje, SO.Estado
+	SELECT P.Cuit, P.FechaModificacion, DP.Tipo, DP.Mensaje, DP.Estado
 	FROM Persona P 
 	LEFT JOIN DetallePersona DP ON (P.Id = DP.IdPersona)
 	WHERE IdUsuario = @IdUsuario
