@@ -54,7 +54,7 @@ namespace SujetoObligado.Models.SujetoObligado
                     cmd = new SqlCommand();
                     cmd.Connection = objConexion.ObtenerConexion(Configuration.ObtenerConexion("SujetoObligado"));
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = "Qry_SujetoObligado_ADD";
+                    cmd.CommandText = "Qry_DetallePersona_ADD";
                     cmd.Parameters.Add("@IdPersona", SqlDbType.Int).Value = this.Id;
                     cmd.Parameters.Add("@Tipo", SqlDbType.VarChar, 255).Value = item.Tipo;
                     cmd.Parameters.Add("@Estado", SqlDbType.Bit).Value = item.Estado;
@@ -62,9 +62,6 @@ namespace SujetoObligado.Models.SujetoObligado
                     cmd.Parameters.Add("@FechaCreacion", SqlDbType.DateTime).Value = item.FechaCreacion;
                     cmd.ExecuteScalar();
                 }
-                
-                
-                
 
             }
             catch (Exception ex)

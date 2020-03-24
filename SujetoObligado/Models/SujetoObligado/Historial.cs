@@ -23,7 +23,7 @@ namespace SujetoObligado.Models.SujetoObligado
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = objConexion.ObtenerConexion(Configuration.ObtenerConexion("SujetoObligado"));
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "Qry_SujetoObligado_SEEK";
+                cmd.CommandText = "Qry_Persona_SEEK_xIdUsuario";
                 cmd.Parameters.Add("@IdUsuario", SqlDbType.Int).Value = idUsuario;
                 SqlDataAdapter da = new SqlDataAdapter(cmd);
                 DataTable dt = new DataTable();

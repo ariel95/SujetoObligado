@@ -58,11 +58,11 @@ CREATE TABLE Persona (
 	FechaAlta datetime default getdate()
 );
 
-CREATE TABLE SujetoObligado (
-    IdSujetoObligado int IDENTITY (1,1) NOT NULL,
-      CONSTRAINT PK_SujetoObligado PRIMARY KEY CLUSTERED (IdSujetoObligado),
+CREATE TABLE DetallePersona (
+    Id int IDENTITY (1,1) NOT NULL,
+      CONSTRAINT PK_DetallePersona PRIMARY KEY CLUSTERED (Id),
 	IdPersona int,
-	  CONSTRAINT FK_Persona_SujetoObligado
+	  CONSTRAINT FK_Persona_DetallePersona
 		FOREIGN KEY (IdPersona)
 		REFERENCES Persona,
     Tipo varchar(255) NOT NULL,
@@ -112,9 +112,9 @@ GO
 -- =============================================
 -- Author:		Ariel Vergara
 -- Create date: 20-03-2020
--- Description:	Agrega registro a la tabla SujetoObligado
+-- Description:	Agrega registro a la tabla DetallePersona
 -- =============================================
-CREATE PROCEDURE Qry_SujetoObligado_ADD
+CREATE PROCEDURE Qry_DetallePersona_ADD
 	@IdPersona int,
 	@Tipo varchar(255), 
 	@Estado bit,
@@ -125,7 +125,7 @@ BEGIN
 	
 	SET NOCOUNT ON;
 
-    INSERT INTO [dbo].[SujetoObligado]
+    INSERT INTO [dbo].[DetallePersona]
            ([IdPersona]
            ,[Tipo]
            ,[Estado]
@@ -153,7 +153,7 @@ GO
 -- Create date: 23-03-2020
 -- Description:	Lista las busquedas que realizó un determinado usuario
 -- =============================================
-CREATE PROCEDURE Qry_SujetoObligado_SEEK
+CREATE PROCEDURE Qry_Persona_SEEK_xIdUsuario
 	@IdUsuario int
 AS
 BEGIN
@@ -161,9 +161,9 @@ BEGIN
 
 	SELECT P.Cuit, SO.Tipo, SO.Mensaje, SO.Estado
 	FROM Persona P 
-	INNER JOIN SujetoObligado SO ON (P.Id = SO.IdPersona)
+	INNER JOIN DetallePersona DP ON (P.Id = DP.IdPersona)
 	WHERE IdUsuario = @IdUsuario
-	ORDER BY P.Id, SO.IdSujetoObligado
+	ORDER BY P.Id, DP.Id
 END
 GO
 
