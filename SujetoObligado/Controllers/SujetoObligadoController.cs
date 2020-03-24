@@ -36,13 +36,15 @@ namespace SujetoObligado.Controllers
                 }
             }
 
-            if (sujetoObligado != null && sujetoObligado.Count > 0)
+            if (sujetoObligado != null && sujetoObligado.Count > 0) 
                 persona = new PersonaSO(sujetoObligado);
-
             else
                 persona = new PersonaSO();
 
             persona.Cuit = cuit;
+
+            //TODO: Guardar en el historial de consulta
+            persona.GuardarConsulta();
 
             return View(persona);
         }
