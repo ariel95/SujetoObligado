@@ -31,20 +31,46 @@ namespace SujetoObligado.Models.SujetoObligado
                 
                 for (int i = 0; i < dt.Rows.Count; i++)
                 {
-                    var cuit = Convert.ToString(dt.Rows[i]["Cuit"]);
+                    try
+                    {
+                        var cuit = Convert.ToString(dt.Rows[i]["Cuit"]);
+                        personaAux = lista.Find(x => x.Cuit == cuit);
+                        if (personaAux == null)
+                        {
+                            personaAux = new PersonaSO();
+                            personaAux.Cuit = cuit;
+                            lista.Add(personaAux);
+                        }
 
-                    if (ultimoCuit != cuit) {
-                        if (ultimoCuit != "") lista.Add(personaAux);
-                        personaAux = new PersonaSO();
-                        personaAux.Cuit = cuit;
+                        DetallePersonaSO detalleAux = new DetallePersonaSO();
+                        detalleAux.Tipo = Convert.ToString(dt.Rows[i]["Tipo"]);
+                        detalleAux.Mensaje = Convert.ToString(dt.Rows[i]["Mensaje"]);
+                        detalleAux.Estado = Convert.ToBoolean(dt.Rows[i]["Estado"]);
+
+                        personaAux.Detalle.Add(detalleAux);
                     }
-                    DetallePersonaSO detalleAux = new DetallePersonaSO();
-                    detalleAux.Tipo = Convert.ToString(dt.Rows[i]["Tipo"]);
-                    detalleAux.Mensaje = Convert.ToString(dt.Rows[i]["Mensaje"]);
-                    detalleAux.Estado = Convert.ToBoolean(dt.Rows[i]["Estado"]);
+                    catch (Exception)
+                    {
+                        //TODO: EXCEPCION DE DETALLE NULL POR NO SER SUJETO OBLIGADO
+                    }
+                    
 
-                    personaAux.Detalle.Add(detalleAux);
-                    ultimoCuit = cuit;
+
+
+                    //var cuit = Convert.ToString(dt.Rows[i]["Cuit"]);
+
+                    //if (ultimoCuit != cuit) {
+                    //    if (ultimoCuit != "") lista.Add(personaAux);
+                    //    personaAux = new PersonaSO();
+                    //    personaAux.Cuit = cuit;
+                    //}
+                    //DetallePersonaSO detalleAux = new DetallePersonaSO();
+                    //detalleAux.Tipo = Convert.ToString(dt.Rows[i]["Tipo"]);
+                    //detalleAux.Mensaje = Convert.ToString(dt.Rows[i]["Mensaje"]);
+                    //detalleAux.Estado = Convert.ToBoolean(dt.Rows[i]["Estado"]);
+
+                    //personaAux.Detalle.Add(detalleAux);
+                    //ultimoCuit = cuit;
                     //TODO: Mejorarlo!!! (No funciona con un solo registro)
                 }
 

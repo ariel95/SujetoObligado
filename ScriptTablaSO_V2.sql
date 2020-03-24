@@ -83,7 +83,7 @@ GO
 -- Create date: 20-03-2020
 -- Description:	Agrega registro a la tabla Persona
 -- =============================================
-CREATE PROCEDURE Qry_Persona_ADD
+CREATE PROCEDURE [dbo].[Qry_Persona_ADD]
 	@IdUsuario int,
 	@Cuit varchar(11),
 	@RazonSocial varchar(100) = ''
@@ -91,17 +91,27 @@ CREATE PROCEDURE Qry_Persona_ADD
 AS
 BEGIN
 	SET NOCOUNT ON;
-	INSERT INTO [dbo].[Persona]
-           ([IdUsuario]
-		   ,[Cuit]
-           ,[RazonSocial]
-           ,[FechaAlta])
-     OUTPUT Inserted.Id
-     VALUES
-           (@IdUsuario
-		   ,@Cuit
-           ,@RazonSocial
-           ,GETDATE())
+	IF NOT EXISTS(SELECT 1 FROM Persona WHERE IdUsuario = @IdUsuario and Cuit = @Cuit) 
+	BEGIN
+		INSERT INTO [dbo].[Persona]
+			([IdUsuario]
+			,[Cuit]
+			,[RazonSocial]
+			,[FechaAlta])
+		OUTPUT Inserted.Id
+		VALUES
+			(@IdUsuario
+			,@Cuit
+			,@RazonSocial
+			,GETDATE())
+	END
+	ELSE
+	BEGIN
+		UPDATE Persona
+		SET RazonSocial = @RazonSocial
+		OUTPUT inserted.Id
+		WHERE IdUsuario = @IdUsuario and Cuit = @Cuit
+	END
 END
 
 
@@ -114,7 +124,7 @@ GO
 -- Create date: 20-03-2020
 -- Description:	Agrega registro a la tabla DetallePersona
 -- =============================================
-CREATE PROCEDURE Qry_DetallePersona_ADD
+ALTER PROCEDURE [dbo].[Qry_DetallePersona_ADD]
 	@IdPersona int,
 	@Tipo varchar(255), 
 	@Estado bit,
@@ -125,22 +135,31 @@ BEGIN
 	
 	SET NOCOUNT ON;
 
-    INSERT INTO [dbo].[DetallePersona]
-           ([IdPersona]
-           ,[Tipo]
-           ,[Estado]
-           ,[Mensaje]
-           ,[FechaCreacion]
-           ,[FechaModificacion]
-           ,[FechaAlta])
-     VALUES
-           (@IdPersona
-           ,@Tipo
-           ,@Estado
-           ,@Mensaje
-           ,@FechaCreacion
-           ,GETDATE()
-           ,GETDATE())
+	IF NOT EXISTS(SELECT 1 FROM [dbo].[DetallePersona] WHERE IdPersona = @IdPersona AND Tipo = @Tipo)
+	BEGIN
+		INSERT INTO [dbo].[DetallePersona]
+				([IdPersona]
+				,[Tipo]
+				,[Estado]
+				,[Mensaje]
+				,[FechaCreacion]
+				,[FechaModificacion]
+				,[FechaAlta])
+			VALUES
+				(@IdPersona
+				,@Tipo
+				,@Estado
+				,@Mensaje
+				,@FechaCreacion
+				,GETDATE()
+				,GETDATE())
+	END
+	ELSE
+	BEGIN
+		UPDATE [dbo].[DetallePersona]
+		SET Estado = @Estado, Mensaje = @Mensaje, FechaCreacion = @FechaCreacion, FechaModificacion = getdate()
+		WHERE IdPersona = @IdPersona AND Tipo = @Tipo
+	END 
 END
 GO
 
@@ -161,7 +180,7 @@ BEGIN
 
 	SELECT P.Cuit, SO.Tipo, SO.Mensaje, SO.Estado
 	FROM Persona P 
-	INNER JOIN DetallePersona DP ON (P.Id = DP.IdPersona)
+	LEFT JOIN DetallePersona DP ON (P.Id = DP.IdPersona)
 	WHERE IdUsuario = @IdUsuario
 	ORDER BY P.Id, DP.Id
 END
