@@ -45,6 +45,7 @@ body {
     color: white !important;
     width: 80px;
     text-align: center;
+    text-decoration:none !important;
 }
 .header.texto-link a:hover {
     font-weight: 500;
@@ -123,12 +124,17 @@ address img {
 }
 
 .btn-ingresar {
-    
+    font-weight:500;    
 }
 
 a {
     color: var(--app-color) !important;
+    text-decoration:underline;
 }
 a:hover {
     font-weight: 500;
+}
+
+.card-body {
+    min-height: 200px;
 }

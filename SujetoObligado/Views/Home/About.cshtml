@@ -1,7 +1,31 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<h3>Sistema de Verificación de Sujeto Obligado</h3>
+<p>El principal objetivo de esta aplicación es la demostración del modo de trabajo que he adquirido durante mi experiencia laboral.</p>
 
-<p>Use this area to provide additional information.</p>
+<h5>¿Quiénes son los Sujetos Obligados?</h5>
+<p>
+    Son las Personas Físicas y Jurídicas señaladas en el artículo 20 de la Ley N° 25.246 y modificatorias. Los sectores determinados en dicho artículo son aquellos que los legisladores consideraron vulnerables para el Lavado de Activos y la Financiación del Terrorismo.<br />
+    Para más información <a href="https://www.argentina.gob.ar/uif/sujetos-obligados">Ingrese aquí</a>.
+</p>
+<h5>Consulta simple</h5>
+<p>
+    Verifique si un Cuit está registrado como Sujeto Obligado.<br />
+    <a href="@Url.Action("Consulta","SujetoObligado")">Ingrese aquí</a>.
+</p>
+<h5>Consulta masiva</h5>
+<p>
+    Importe un archivo Excel con los Cuits en la primera columna y en breve le llegará por mail el resultado de los Cuits solicitados. <br />
+    Para más información <a href="@Url.Action("ConsultaMasiva","SujetoObligado")">Ingrese aquí</a>.
+</p>
+<h5>Subscribase</h5>
+<p>
+    Mantengase al tanto de los cambios y de los nuevos Sujetos Obligados registrados de un determinado Cuit.<br />
+    Para más información <a href="@Url.Action("Index","Historial")">Ingrese aquí</a>
+</p>
+<h5>Historial</h5>
+<p>
+    Tenga un regitro de los Cuits que ha consultado.<br />
+    Para más información <a href="@Url.Action("Index","Historial")">Ingrese aquí</a>
+</p>

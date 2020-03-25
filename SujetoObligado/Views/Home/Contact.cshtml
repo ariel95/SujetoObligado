@@ -1,7 +1,7 @@
 ﻿@{
     ViewBag.Title = "Contact";
 }
-<h3>Contactese</h3>
+@*<h3>Contactese</h3>
 
 <address>
 
@@ -14,4 +14,78 @@
 <address>
     <strong>Soporte:</strong><a href="mailto:Support@example.com">Support@example.com</a><br />
     <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+</address>*@
+<link href="~/Content/CSS/Contact.css" rel="stylesheet" />
+<div class="contact-area">
+    <div class="contact">
+        <main>
+            <section>
+                <div class="content">
+                    <img src="~/Content/Image/Contact/fotoCV.gif"  alt="Profile Image"/>
+                    <aside>
+                        <h1>Ariel Bernardo Vergara</h1>
+                        <p>Hola! Soy Ariel, soy Desarrollador Full Stack .Net y soy estudiante de Ingenería en Sistemas de Información en la UTN</p>
+                    </aside>
+
+                    <button>
+                        <span>Contactame</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"> <g class="nc-icon-wrapper" fill="#444444"> <path d="M14.83 30.83L24 21.66l9.17 9.17L36 28 24 16 12 28z"></path> </g> </svg>
+                    </button>
+                </div>
+
+                <div class="title"><p>Contactame</p></div>
+            </section>
+
+
+        </main>
+
+        <nav>
+            <a href="mailto:arielbvergara@gmail.com" class="gmail">
+                <div class="icon">
+                    <img src="~/Content/Image/Contact/gmail-circle.png" style="height: 50px;"/>
+                </div>
+
+                <div class="content">
+                    <h1>Email</h1>
+                    <span>arielbvergara@gmail.com</span>
+                </div>
+
+                <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"> <g class="nc-icon-wrapper" fill="#444444"> <path d="M17.17 32.92l9.17-9.17-9.17-9.17L20 11.75l12 12-12 12z"></path> </g> </svg>
+            </a>
+
+            <a href="https://www.linkedin.com/in/abvergara/" class="linkedin">
+                <div class="icon">
+                    <img src="~/Content/Image/Contact/linkedin-circle.png" style="height:50px;"/>
+                </div>
+
+                <div class="content">
+                    <h1>Linkedin</h1>
+                    <span>https://www.linkedin.com/in/abvergara/</span>
+                </div>
+
+                <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"> <g class="nc-icon-wrapper" fill="#444444"> <path d="M17.17 32.92l9.17-9.17-9.17-9.17L20 11.75l12 12-12 12z"></path> </g> </svg>
+            </a>
+
+            <a href="https://api.whatsapp.com/send?phone=+541162064526" class="whatsapp">
+                <div class="icon">
+                    <img src="~/Content/Image/Contact/whatsapp-circle2.png" style="height:50px;"/>
+                </div>
+
+                <div class="content">
+                    <h1>Whatsapp</h1>
+                    <span>+511162064526</span>
+                </div>
+
+                <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"> <g class="nc-icon-wrapper" fill="#444444"> <path d="M17.17 32.92l9.17-9.17-9.17-9.17L20 11.75l12 12-12 12z"></path> </g> </svg>
+            </a>
+        </nav>
+    </div>
+</div>
+
+<script>
+    $('button').click(function(){
+      $('button').toggleClass('active');
+      $('.title').toggleClass('active');
+      $('nav').toggleClass('active');
+    });
+</script>
