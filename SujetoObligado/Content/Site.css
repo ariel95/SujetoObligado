@@ -24,7 +24,10 @@ body {
 
 
 /*Overloads*/
-
+.table td {
+    vertical-align: inherit;
+    font-size: 14px;
+}   
 
 /*Site*/
     textarea:focus, input:focus {

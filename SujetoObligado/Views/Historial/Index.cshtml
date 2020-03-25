@@ -18,10 +18,10 @@
             Tipo
         </th>
         <th>
-            Estado
+            Mensaje
         </th>
         <th>
-            Mensaje
+            Estado
         </th>
     </tr>
     @{ int rows = 0; }
@@ -37,17 +37,17 @@
             </tr>
             foreach (var detalle in persona.Detalle)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => detalle.Tipo)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => detalle.Estado)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => detalle.Mensaje)
-                    </td>
-                </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => detalle.Tipo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => detalle.Mensaje)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => detalle.Estado)
+                </td>
+            </tr>
             }
         }
         else { 
@@ -56,7 +56,7 @@
                     @Html.DisplayFor(modelItem => persona.Cuit)
                 </td>
                 <td colspan="3">
-                    El CUIT no registra sujeto obligado ante la UIF en el día @persona.FechaModificacion
+                    El CUIT no registra sujeto obligado ante la UIF hasta el día @persona.FechaModificacion.ToString("dd/MM/yyyy")
                 </td>
             </tr>
         }

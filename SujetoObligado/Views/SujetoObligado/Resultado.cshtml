@@ -43,7 +43,7 @@
                     @Html.DisplayFor(modelItem => item.Mensaje)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.FechaCreacion)
+                    @item.FechaCreacion.ToString("dd/MM/yyyy")
                 </td>
                 <td>
                     <a href="https://sro.uif.gob.ar/SROAPP/#/consultaRegistracion/Detalle/@Model.Cuit@i">Ver comprobante</a>
