@@ -121,3 +121,14 @@ address img {
     font-size: var(--title-resultado-size);
     font-weight: 500;
 }
+
+.btn-ingresar {
+    
+}
+
+a {
+    color: var(--app-color) !important;
+}
+a:hover {
+    font-weight: 500;
+}

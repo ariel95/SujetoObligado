@@ -15,6 +15,11 @@ namespace SujetoObligado.Controllers
     {
         private string baseUrl = "https://sro.uif.gob.ar/SROAPI/";
 
+        public ActionResult Consulta()
+        {
+            return View();
+        }
+
         // GET: SujetoObligado
         public async System.Threading.Tasks.Task<ActionResult> Resultado(string cuit)
         {

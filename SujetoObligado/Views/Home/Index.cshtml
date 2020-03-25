@@ -1,71 +1,47 @@
-﻿@{
-    ViewBag.Title = "Sujeto Obligado";
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@using (Html.BeginForm("Resultado", "SujetoObligado", FormMethod.Get))
-{
-    <div class="container">
-        <div class="title-app">
-            <p>
-                Sujeto Obligado
-            </p>
-        </div>
-        <div class="input-group mb-3 mt-3 search-container">
-            <input id="so-cuit" type="text" name="cuit" class="form-control" placeholder="Ingrese un cuit" aria-label="Recipient's username" aria-describedby="basic-addon2">
-            <div id="search-cuit" class="input-group-append">
-                <span class="input-group-text octicon-search" id="lupa-search">
-                    <img src="~/Content/Image/lupa.png" class="lupa" />
-                </span>
-            </div>
-
-        </div>
-        <div id="home-carrousel" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#home-carrousel" data-slide-to="0" class="active"></li>
-                <li data-target="#home-carrousel" data-slide-to="1"></li>
-                <li data-target="#home-carrousel" data-slide-to="2"></li>
-                <li data-target="#home-carrousel" data-slide-to="3"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <label>Consulte a partir de un CUIT, si está registrado como Sujeto Obligado ante la UIF</label>
-                </div>
-                <div class="carousel-item">
-                    <label>Realice consultas masivas de Sujetos Obligados</label>
-                </div>
-                <div class="carousel-item">
-                    <label>Utilice la API que le brindamos para realizar consultas individuales y consultas másivas</label>
-                </div>
-                <div class="carousel-item">
-                    <label>Suscríbase a determinados cuits para saber si cambia el estado de Sujeto Obligado</label>
+<div class="title-app">
+    <p>
+        Sistema de verificación de <br />
+        Sujeto Obligado
+    </p>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Consulta Simple</h5>
+                <p class="card-text">Consulte a partir de un Cuit, si dicho Cuit está registrado como Sujeto Obligado ante la  <a href="https://www.argentina.gob.ar/uif/sujetos-obligados">UIF</a></p>
+                <div class="text-right">
+                    <a href="@Url.Action("Consulta","SujetoObligado")" class="btn btn-ingresar">Ingresar ></a>
                 </div>
             </div>
         </div>
     </div>
-}
-
-<script>
-    $('#search-cuit').on('click', function (e) {
-        var cuit = $('#so-cuit').val();
-        if (CuitValido(cuit)) {
-            $('form').submit();
-        }
-    });
-    $('#so-cuit').on('keydown', function (e) {
-        var code = (e.keyCode ? e.keyCode : e.which);
-        if(code==13){
-            var cuit = $(this).val();
-            if (CuitValido(cuit)) {
-                $('form').submit();
-            }
-            else {
-                e.preventDefault();
-                e.stopPropagation();
-            }
-        }
-    });
-    function CuitValido(cuit) {
-        return true; //TODO: Validar cuit client side
-    }
-
-</script>
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Consulta Masiva</h5>
+                <p class="card-text">Consulte a partir de un Excel con cuits, si dichos Cuits están registrado como Sujeto Obligado ante la <a href="https://www.argentina.gob.ar/uif/sujetos-obligados">UIF</a>.</p>
+                <div class="text-right">
+                    <a href="@Url.Action("ConsultaMasiva","SujetoObligado")" class="btn btn-ingresar">Ingresar ></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Historial</h5>
+                <p class="card-text">Tenga un registro de los Cuits consultados previamente.</p>
+                <div class="text-right">
+                    <a href="@Url.Action("Index","Historial")" class="btn btn-ingresar">Ingresar ></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

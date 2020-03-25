@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "Sujeto Obligado";
+}
+
+@using (Html.BeginForm("Resultado", "SujetoObligado", FormMethod.Get))
+{
+    <div class="container">
+        <div class="title-resultado">
+            <p>Consulta Simple</p>
+        </div>
+        <div class="input-group mb-3 mt-3 search-container">
+            <input id="so-cuit" type="text" name="cuit" class="form-control" placeholder="Ingrese un cuit" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div id="search-cuit" class="input-group-append">
+                <span class="input-group-text octicon-search" id="lupa-search">
+                    <img src="~/Content/Image/lupa.png" class="lupa" />
+                </span>
+            </div>
+
+        </div>
+        <div id="home-carrousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#home-carrousel" data-slide-to="0" class="active"></li>
+                <li data-target="#home-carrousel" data-slide-to="1"></li>
+                <li data-target="#home-carrousel" data-slide-to="2"></li>
+                <li data-target="#home-carrousel" data-slide-to="3"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <label>Consulte a partir de un CUIT, si está registrado como Sujeto Obligado ante la UIF</label>
+                </div>
+                <div class="carousel-item">
+                    <label>Realice consultas masivas de Sujetos Obligados</label>
+                </div>
+                <div class="carousel-item">
+                    <label>Utilice la API que le brindamos para realizar consultas individuales y consultas másivas</label>
+                </div>
+                <div class="carousel-item">
+                    <label>Suscríbase a determinados cuits para saber si cambia el estado de Sujeto Obligado</label>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    $('#search-cuit').on('click', function (e) {
+        var cuit = $('#so-cuit').val();
+        if (CuitValido(cuit)) {
+            $('form').submit();
+        }
+    });
+    $('#so-cuit').on('keydown', function (e) {
+        var code = (e.keyCode ? e.keyCode : e.which);
+        if(code==13){
+            var cuit = $(this).val();
+            if (CuitValido(cuit)) {
+                $('form').submit();
+            }
+            else {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        }
+    });
+    function CuitValido(cuit) {
+        return true; //TODO: Validar cuit client side
+    }
+
+</script>
