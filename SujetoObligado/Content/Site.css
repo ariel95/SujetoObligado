@@ -7,6 +7,7 @@
 
 body {
     padding-bottom: 20px;
+    background-color: #d4d4d470;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -137,4 +138,7 @@ a:hover {
 
 .card-body {
     min-height: 200px;
+    -webkit-box-shadow: 10px 10px 5px -2px rgba(0,0,0,0.22);
+    -moz-box-shadow: 10px 10px 5px -2px rgba(0,0,0,0.22);
+    box-shadow: 10px 10px 5px -2px rgba(0, 0, 0, 0.11);
 }
